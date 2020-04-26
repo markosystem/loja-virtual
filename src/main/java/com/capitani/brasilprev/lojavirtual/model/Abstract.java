@@ -6,10 +6,12 @@ import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.LastModifiedBy;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Date;
 
 @MappedSuperclass
-public abstract class Abstract {
+public class Abstract implements Serializable {
+    private static final long serialVersionUID = -8769068017487193186L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
@@ -36,5 +38,37 @@ public abstract class Abstract {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public User getUserCreated() {
+        return userCreated;
+    }
+
+    public void setUserCreated(User userCreated) {
+        this.userCreated = userCreated;
+    }
+
+    public Date getCreated() {
+        return created;
+    }
+
+    public void setCreated(Date created) {
+        this.created = created;
+    }
+
+    public User getUserUpdated() {
+        return userUpdated;
+    }
+
+    public void setUserUpdated(User userUpdated) {
+        this.userUpdated = userUpdated;
+    }
+
+    public Date getUpdated() {
+        return updated;
+    }
+
+    public void setUpdated(Date updated) {
+        this.updated = updated;
     }
 }
