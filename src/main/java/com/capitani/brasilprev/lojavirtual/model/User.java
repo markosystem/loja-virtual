@@ -1,5 +1,8 @@
 package com.capitani.brasilprev.lojavirtual.model;
 
+import com.capitani.brasilprev.lojavirtual.factory.UserFactory;
+import com.capitani.brasilprev.lojavirtual.model.representation.UserViewDto;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -13,9 +16,10 @@ public class User extends Abstract implements UserDetails {
     private String name;
     private String email;
     private String login;
+    @JsonIgnore
     private String password;
-    private String token;
 
+    @JsonIgnore
     @ManyToMany(fetch = FetchType.EAGER)
     private List<Role> roles = new ArrayList<>();
 
@@ -50,14 +54,6 @@ public class User extends Abstract implements UserDetails {
         this.password = password;
     }
 
-    public String getToken() {
-        return token;
-    }
-
-    public void setToken(String token) {
-        this.token = token;
-    }
-
     public List<Role> getRoles() {
         return roles;
     }
@@ -66,6 +62,7 @@ public class User extends Abstract implements UserDetails {
         this.roles = roles;
     }
 
+    @JsonIgnore
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return this.roles;
@@ -81,21 +78,25 @@ public class User extends Abstract implements UserDetails {
         return this.login;
     }
 
+    @JsonIgnore
     @Override
     public boolean isAccountNonExpired() {
         return true;
     }
 
+    @JsonIgnore
     @Override
     public boolean isAccountNonLocked() {
         return true;
     }
 
+    @JsonIgnore
     @Override
     public boolean isCredentialsNonExpired() {
         return true;
     }
 
+    @JsonIgnore
     @Override
     public boolean isEnabled() {
         return true;

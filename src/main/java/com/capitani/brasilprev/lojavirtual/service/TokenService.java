@@ -31,15 +31,12 @@ public class TokenService {
         calendar.setTime(hoje);
         calendar.add(Calendar.HOUR_OF_DAY, 1);
         Date dataExpiration = new Date(calendar.getTime().getTime());
-        String token = Jwts.builder().setIssuer("API REST Loja Virtual")
+        return Jwts.builder().setIssuer("API REST Loja Virtual")
                 .setSubject(logged.getId().toString())
                 .setIssuedAt(hoje)
                 .setExpiration(dataExpiration)
                 .signWith(SignatureAlgorithm.HS512, secret)
                 .compact();
-        logged.setToken(token);
-        userService.save(logged);
-        return token;
     }
 
     public boolean isTokenValid(String token) {

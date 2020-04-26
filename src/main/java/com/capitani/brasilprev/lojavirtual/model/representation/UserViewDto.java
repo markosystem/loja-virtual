@@ -11,13 +11,9 @@ public class UserViewDto {
 
     private String login;
 
-    private String password;
-
-    private String token;
-
     private Date created;
 
-    private Date modified;
+    private Date updated;
 
     public Long getId() {
         return id;
@@ -51,22 +47,6 @@ public class UserViewDto {
         this.login = login;
     }
 
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public String getToken() {
-        return token;
-    }
-
-    public void setToken(String token) {
-        this.token = token;
-    }
-
     public Date getCreated() {
         return created;
     }
@@ -75,11 +55,11 @@ public class UserViewDto {
         this.created = created;
     }
 
-    public Date getModified() {
-        return modified;
+    public Date getUpdated() {
+        return updated;
     }
 
-    public void setModified(Date modified) {
-        this.modified = modified;
+    public void setUpdated(Date updated) {
+        this.updated = updated;
     }
 }
