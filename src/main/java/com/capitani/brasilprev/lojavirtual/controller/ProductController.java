@@ -63,6 +63,7 @@ public class ProductController {
     public ResponseEntity<ProductViewDto> update(@PathVariable("id") Long id, @RequestBody @Valid ProductFormDto form) {
         Optional<Product> productOptional = service.findById(id);
         if (productOptional.isPresent()) {
+
             Product product = form.update(productOptional.get());
             return ResponseEntity.ok(new ProductViewDto(product));
         }

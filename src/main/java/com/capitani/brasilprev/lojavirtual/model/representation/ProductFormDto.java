@@ -2,7 +2,10 @@ package com.capitani.brasilprev.lojavirtual.model.representation;
 
 import com.capitani.brasilprev.lojavirtual.factory.ProductFactory;
 import com.capitani.brasilprev.lojavirtual.model.Product;
+import com.capitani.brasilprev.lojavirtual.model.User;
 import org.hibernate.validator.constraints.Length;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 
 import javax.persistence.Column;
 import javax.validation.constraints.NotBlank;
@@ -19,12 +22,19 @@ public class ProductFormDto {
     private BigDecimal value;
 
     public Product converter() {
-        return ProductFactory.initialize(this.name, this.value);
+        Product productForm = ProductFactory.initialize(this.name, this.value);
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        if (auth != null)
+            productForm.setUserCreated((User) auth.getPrincipal());
+        return productForm;
     }
 
     public Product update(Product productFormUp) {
         productFormUp.setName(this.name);
         productFormUp.setValue(this.value);
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        if (auth != null)
+            productFormUp.setUserUpdated((User) auth.getPrincipal());
         return productFormUp;
     }
 

@@ -10,8 +10,6 @@ import java.util.Optional;
 public interface ProductService {
     Page<Product> getAll(Pageable page);
 
-    List<Product> getAll();
-
     Page<Product> findByName(String name, Pageable page);
 
     Optional<Product> findById(long id);

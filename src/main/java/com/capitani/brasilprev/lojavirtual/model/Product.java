@@ -6,7 +6,6 @@ import javax.persistence.*;
 import java.math.BigDecimal;
 
 @Entity
-@Component
 public class Product extends Abstract {
     private String name;
     @Column(scale = 2, precision = 11)
