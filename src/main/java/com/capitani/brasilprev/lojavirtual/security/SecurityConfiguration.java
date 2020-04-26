@@ -37,7 +37,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     }
 
     /**
-     * Configurações de Autenticações
+     * Set encrypt with password of user
      *
      * @param auth
      * @throws Exception
@@ -48,7 +48,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     }
 
     /**
-     * Configurações de Autorizações
+     * Set configurations for permissions access in endpoints Api REST
+     * Allowed only /auth for autentication by HTTP.POST
      *
      * @param http
      * @throws Exception
@@ -56,7 +57,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers(HttpMethod.GET, "/auth").permitAll()
                 .antMatchers(HttpMethod.POST, "/auth").permitAll()
                 .anyRequest().authenticated()
                 .and().csrf().disable()
@@ -65,7 +65,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     }
 
     /**
-     * Configurações de recursos estáticos (js, css, imagens e etc...)
+     * Set configurations for access only resources statics with js, css, images and access in database h2
      *
      * @param web
      * @throws Exception

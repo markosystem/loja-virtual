@@ -32,6 +32,11 @@ public class AuthTokenFilter extends OncePerRequestFilter {
         filterChain.doFilter(request, response);
     }
 
+    /**
+     * Authentication user with token code
+     *
+     * @param token
+     */
     private void authUser(String token) {
         Long idUser = tokenService.getIdUser(token);
         User user = userRepository.findById(idUser).get();
@@ -39,10 +44,16 @@ public class AuthTokenFilter extends OncePerRequestFilter {
         SecurityContextHolder.getContext().setAuthentication(authenticationToken);
     }
 
+    /**
+     * Recover only the code of token
+     *
+     * @param request
+     * @return
+     */
     private String recoverToken(HttpServletRequest request) {
         String token = request.getHeader("Authorization");
         if (token == null || token.isEmpty() || !token.startsWith("Bearer "))
             return null;
-        return token.substring(7, token.length());
+        return token.substring(7);
     }
 }

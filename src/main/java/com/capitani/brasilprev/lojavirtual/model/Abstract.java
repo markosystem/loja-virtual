@@ -13,10 +13,9 @@ import java.util.Date;
 public class Abstract implements Serializable {
     private static final long serialVersionUID = -8769068017487193186L;
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @CreatedBy
     @ManyToOne
     protected User userCreated;
 
@@ -24,7 +23,6 @@ public class Abstract implements Serializable {
     @Temporal(TemporalType.TIMESTAMP)
     protected Date created;
 
-    @LastModifiedBy
     @ManyToOne
     protected User userUpdated;
 

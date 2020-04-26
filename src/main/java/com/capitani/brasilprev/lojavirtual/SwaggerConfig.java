@@ -33,7 +33,7 @@ public class SwaggerConfig extends WebMvcConfigurationSupport {
                         Arrays.asList(
                                 new ParameterBuilder()
                                         .name("Authorization")
-                                        .description("Token JWT (ex: Baerer token...)")
+                                        .description("Token JWT (ex: Bearer token...)")
                                         .modelRef(new ModelRef("string"))
                                         .parameterType("header")
                                         .required(false)

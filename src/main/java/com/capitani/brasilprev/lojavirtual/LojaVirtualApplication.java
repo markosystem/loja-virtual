@@ -2,6 +2,7 @@ package com.capitani.brasilprev.lojavirtual;
 
 import com.capitani.brasilprev.lojavirtual.factory.ProductFactory;
 import com.capitani.brasilprev.lojavirtual.factory.UserFactory;
+import com.capitani.brasilprev.lojavirtual.model.Product;
 import com.capitani.brasilprev.lojavirtual.model.User;
 import com.capitani.brasilprev.lojavirtual.service.ProductService;
 import com.capitani.brasilprev.lojavirtual.service.UserService;
@@ -17,7 +18,9 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 
 @SpringBootApplication
 @EnableSpringDataWebSupport
@@ -36,10 +39,19 @@ class initializeData implements CommandLineRunner {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private ProductService productService;
+
     @Override
     public void run(String... args) throws Exception {
         logger.info("Registrando Usuário Teste");
         User userRegistered = userService.save(UserFactory.initialize("Usuário Teste", "user", new BCryptPasswordEncoder().encode("123456"), "userteste@gmail.com"));
+        logger.info("---------------------------------");
+
+        logger.info("Registro Automático de Produtos");
+        List<Product> productList = new ArrayList<>();
+        for (int i = 1; i <= 5; i++)
+            productList.add(productService.save(ProductFactory.initialize("Produto " + i, new BigDecimal(10 + i), userRegistered, null)));
         logger.info("---------------------------------");
     }
 }
