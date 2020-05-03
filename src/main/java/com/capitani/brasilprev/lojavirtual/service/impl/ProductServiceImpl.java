@@ -8,6 +8,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -38,5 +40,15 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public void delete(Product product) {
         repository.delete(product);
+    }
+
+    @Override
+    public List<Product> findByIds(List<Long> productList) {
+        List<Product> products = new ArrayList<>();
+        for (Long id : productList) {
+            Optional<Product> productOptional = this.findById(id);
+            productOptional.ifPresent(products::add);
+        }
+        return products;
     }
 }

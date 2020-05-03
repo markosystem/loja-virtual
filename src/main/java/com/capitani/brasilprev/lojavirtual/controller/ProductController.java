@@ -19,6 +19,7 @@ import javax.transaction.Transactional;
 import javax.validation.Valid;
 import java.net.URI;
 import java.util.Optional;
+import java.util.function.Function;
 
 @RestController
 @RequestMapping("v1/produtos")
@@ -43,7 +44,7 @@ public class ProductController {
     @ApiOperation(value = "Obtém um produto a partir do seu identificador numérico.")
     public ResponseEntity<ProductViewDto> single(@PathVariable("id") Long id) {
         Optional<Product> productOptional = service.findById(id);
-        return productOptional.map(product -> ResponseEntity.ok(new ProductViewDto(product))).orElseGet(() -> ResponseEntity.notFound().build());
+        return null;//productOptional.map(product -> ResponseEntity.ok(new ProductViewDto(product))).orElseGet(() -> ResponseEntity.notFound().build());
     }
 
     @PostMapping
@@ -53,7 +54,7 @@ public class ProductController {
         Product product = form.converter();
         service.save(product);
         URI uri = uriBuilder.path("v1/produtos/{id}").buildAndExpand(product.getId()).toUri();
-        return ResponseEntity.created(uri).body(new ProductViewDto(product));
+        return null;//ResponseEntity.created(uri).body(new ProductViewDto(product));
     }
 
     @PutMapping("/{id}")
@@ -65,7 +66,7 @@ public class ProductController {
         if (productOptional.isPresent()) {
 
             Product product = form.update(productOptional.get());
-            return ResponseEntity.ok(new ProductViewDto(product));
+            return null;//ResponseEntity.ok(new ProductViewDto(product));
         }
         return ResponseEntity.notFound().build();
     }

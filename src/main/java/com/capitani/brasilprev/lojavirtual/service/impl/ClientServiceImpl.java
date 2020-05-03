@@ -9,6 +9,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -19,6 +20,12 @@ public class ClientServiceImpl implements ClientService {
     @Override
     public Page<Client> getAll(Pageable page) {
         return repository.findAll(page);
+    }
+
+    @Override
+    public List<Client> getAllList(Pageable page) {
+        Page<Client> list = repository.findAll(page);
+        return list.getContent();
     }
 
     @Override
