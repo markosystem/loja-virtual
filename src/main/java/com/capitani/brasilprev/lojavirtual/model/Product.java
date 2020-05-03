@@ -1,11 +1,13 @@
 package com.capitani.brasilprev.lojavirtual.model;
 
-import org.springframework.stereotype.Component;
+import springfox.documentation.annotations.ApiIgnore;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
 import java.math.BigDecimal;
 
 @Entity
+@ApiIgnore
 public class Product extends Abstract {
     private String name;
     @Column(scale = 2, precision = 11)

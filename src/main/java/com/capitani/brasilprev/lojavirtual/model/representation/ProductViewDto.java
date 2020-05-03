@@ -1,11 +1,13 @@
 package com.capitani.brasilprev.lojavirtual.model.representation;
 
+import com.capitani.brasilprev.lojavirtual.model.Client;
 import com.capitani.brasilprev.lojavirtual.model.Product;
 import com.capitani.brasilprev.lojavirtual.model.User;
 import org.springframework.data.domain.Page;
 
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.function.Function;
 
 public class ProductViewDto {
     private Long id;
@@ -32,8 +34,8 @@ public class ProductViewDto {
         this.userUpdate = product.getUserUpdated();
     }
 
-    public static Page<ProductViewDto> converter(Page<Product> products) {
-        return products.map(ProductViewDto::new);
+    public static Page<ProductViewDto> converter(Page<Product> productPage) {
+        return productPage.map(ProductViewDto::new);
     }
 
     public Long getId() {

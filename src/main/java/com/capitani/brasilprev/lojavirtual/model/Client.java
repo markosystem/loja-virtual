@@ -1,10 +1,9 @@
 package com.capitani.brasilprev.lojavirtual.model;
 
-import org.springframework.stereotype.Component;
-
-import javax.persistence.Column;
 import javax.persistence.Entity;
-import java.math.BigDecimal;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
 @Entity
 public class Client extends Abstract {

@@ -25,6 +25,9 @@ public class ClientViewDto {
 
     private User userUpdate;
 
+    public ClientViewDto() {
+    }
+
     public ClientViewDto(Client client) {
         this.id = client.getId();
         this.name = client.getName();

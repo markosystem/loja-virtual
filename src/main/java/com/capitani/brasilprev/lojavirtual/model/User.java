@@ -1,12 +1,12 @@
 package com.capitani.brasilprev.lojavirtual.model;
 
-import com.capitani.brasilprev.lojavirtual.factory.UserFactory;
-import com.capitani.brasilprev.lojavirtual.model.representation.UserViewDto;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.ManyToMany;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -22,9 +22,6 @@ public class User extends Abstract implements UserDetails {
     @JsonIgnore
     @ManyToMany(fetch = FetchType.EAGER)
     private List<Role> roles = new ArrayList<>();
-
-    public User() {
-    }
 
     public String getName() {
         return name;

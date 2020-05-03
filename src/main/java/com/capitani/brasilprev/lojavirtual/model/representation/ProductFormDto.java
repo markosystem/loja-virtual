@@ -3,6 +3,8 @@ package com.capitani.brasilprev.lojavirtual.model.representation;
 import com.capitani.brasilprev.lojavirtual.factory.ProductFactory;
 import com.capitani.brasilprev.lojavirtual.model.Product;
 import com.capitani.brasilprev.lojavirtual.model.User;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import org.hibernate.validator.constraints.Length;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -12,7 +14,9 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 
+@ApiModel
 public class ProductFormDto {
+
     @NotBlank(message = "O campo 'Nome' deverar ser informado!")
     @Length(min = 3, max = 100, message = "O campo 'Nome' deverá conter entre 3 e 100 caracteres!")
     private String name;
